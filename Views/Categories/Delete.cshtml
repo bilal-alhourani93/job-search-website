@@ -1,0 +1,50 @@
+﻿@model Job_search.Models.Category
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_MainLayoutPage.cshtml";
+}
+<style>
+    .container {
+        width: 500px;
+    }
+
+    .form-actions {
+        margin-top: 20px;
+    }
+</style>
+<div class="container jumbotron ">
+
+        <h5 class="card-header alert-danger">هل أنت متأكد من حذف نوع الوظيفة ؟</h5>
+        <hr />
+        <div>
+            <table class="dl-horizontal">
+                <tr>
+                    <td>
+                        <strong> @Html.DisplayNameFor(model => model.Categoryname):</strong>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.Categoryname)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong> @Html.DisplayNameFor(model => model.CategoryDescription):</strong>
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.CategoryDescription)
+                    </td>
+                </tr>
+                </table>
+                            @using (Html.BeginForm())
+                            {
+                                @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            @Html.ActionLink("العودة الى القائمة", "Index", null, new { @class = "btn btn-primary" })
+            <input type="submit" value="حذف" class="btn btn-danger" />
+        </div>
+                            }
+                        </div>
+    </div>

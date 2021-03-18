@@ -1,0 +1,71 @@
+﻿@model IEnumerable<Job_search.Models.ApplyForJob>
+
+@{
+    ViewBag.Title = "GetJobsByUser";
+    Layout = "~/Views/Shared/_MainLayoutPage.cshtml";
+}
+
+<style>
+    .bg-info {
+        border: 2px solid #00ffff;
+        color: white; padding:10px;
+    }
+    .alert:hover {
+        background-color: #a9ebff;
+    }
+    table{
+        min-width:1300px;
+    }
+</style>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+</head>
+<body>
+
+    <table class="bg-info col-md-12 text-center">
+        <tr>
+            <td>
+                <h5>جميع الوظائف المتقدم اليها من قبلكم</h5>
+            </td>
+        </tr>
+    </table>
+
+    <table class="table table-bordered text-sm-center ">
+        <tr class="alert-info">
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.jobs.JobTitle)
+            </th>
+            <th class="text-center">
+                نص الرسالة
+            </th>
+            <th class="text-center">
+                التاريخ
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr class="alert">
+                <td>
+                    @Html.DisplayFor(modelItem => item.jobs.JobTitle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Massage)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ApplyDate)
+                </td>
+
+                <td>
+
+                    @Html.ActionLink("تعديل", "EditOfJobs", new { id = item.Id }, new { @class = " btn btn-success btn-sm" })
+                    @Html.ActionLink("التفاصيل", "DetailsOfJob", new { id = item.Id }, new { @class = " btn btn-warning btn-sm" })
+                    @Html.ActionLink("حذف", "DeleteOfJob", new { id = item.Id }, new { @class = " btn btn-danger btn-sm" })
+                </td>
+            </tr>
+        }
+    </table>
+    </body>
+</html>

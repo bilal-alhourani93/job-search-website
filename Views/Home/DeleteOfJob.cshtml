@@ -1,0 +1,63 @@
+﻿@model Job_search.Models.ApplyForJob
+
+@{
+    ViewBag.Title = "DeleteOfJob";
+    Layout = "~/Views/Shared/_MainLayoutPage.cshtml";
+}
+
+<style>
+    .button {
+        margin-top: 15px;
+    }
+    h6.alert-danger {
+        padding: 10px;
+    }
+
+    .card-header {
+        color: white;
+    }
+    div.container{
+        width:600px;
+        height:50%;
+        border-radius:15px;
+    }
+    li{
+        text-align:justify;
+    }
+    .card-body{
+        background-color:white;
+    }
+
+</style>
+<div class="container alert-danger">
+    <h5 class="card-header bg-danger text-center">حذف الطلب</h5>
+
+    <h6 class="alert-danger">هل أنت متأكد من حذف الطلب ؟</h6>
+    <hr />
+    <ul class=" card-body jumbotron  ">
+        <li>
+         <strong>@Html.DisplayNameFor(model => model.jobs.JobTitle):</strong>
+              @Html.DisplayFor(model => model.jobs.JobTitle)
+        </li>
+
+        <li>
+            <strong>نص الرسالة :</strong>
+            @Html.DisplayFor(model => model.Massage)
+        </li>
+
+        <li>
+            <strong> التاريخ :</strong> @Html.DisplayFor(model => model.ApplyDate)
+        </li>
+
+    </ul>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+<div class="button offset-md-1 ">
+    @Html.ActionLink("العودة الى القائمة", "GetJobsByUser", null, new { @class = "btn btn-primary" })
+    <input type="submit" value="تأكيد الحذف" class="btn btn-danger" />
+</div>
+    }
+</div>

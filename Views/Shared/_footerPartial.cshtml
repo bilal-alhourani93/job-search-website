@@ -1,0 +1,80 @@
+﻿
+
+@using Microsoft.AspNet.Identity
+@using Job_search.Models;
+@if (!Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        var db = new ApplicationDbContext();
+        var userId = User.Identity.GetUserId();
+        var currentUser = db.Users.Where(a => a.Id == userId).SingleOrDefault();
+
+        @Html.AntiForgeryToken()
+        <style>
+            li{
+               margin-top:4px;
+            }
+           ul> li> a{
+                color:gray;
+                font-size:small;
+            }
+            ul {
+               list-style-type: none;
+            }
+            img{
+                margin-right:10px;
+
+            }
+            p{
+                text-align:start;
+                text-align:justify;
+
+            }
+            .subfooter {
+                background-color:#ccc;
+                color: black;
+                padding: 1px;
+                font-family: m1;
+                text-align: center;
+                font-size:13px;
+            }
+        </style>
+        <hr />
+        <footer class="myfooter">
+            <div class="container blockquote-footer">
+                <div class="row">
+
+                    <div class="col-md-4 text-center">
+                        <h3> من نحن</h3>
+                        <p> موقع للوظائف وهو صلة الوصل بين الباحثين عن عمل وأصحاب العمل
+                            الذين ينوون التوظيف. كل يوم، يقوم أهم أصحاب العمل في المنطقة
+                            بإضافة آلاف الوظائف الشاغرة على المنصة.
+                        </p>
+                    </div>
+                    <div class="col-md-4 text-center">
+                        <h3> روابط هامة </h3>
+                        <ul>
+                            <li><a href="#">سياسة الخصوصية</a> </li>
+                            <li><a href="https://goo.gl/maps/ysxaMS96KYF51SGq5">خريطة الموقع</a> </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4 text-center">
+                        <h3>تواصل معنا </h3>
+                        <ul>
+
+                            <li><a href="https://www.instagram.com/"> instgram<img src="~/Images/sd.png" width="22" height="22"></a></li>
+                            <li><a href="https://www.facebook.com/"> facebook<img src="~/Images/ss.png" width="22" height="22"></a> </li>
+                            <li><a href="https://twitter.com/"> twitter<img src="~/Images/logo.png" width="30" height="25"></a> </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="subfooter">
+                <span>جميع الحقوق محفوظة لموقعنا - @DateTime.Now.Year©</span>
+            </div>
+        </footer>
+    }
+}
+

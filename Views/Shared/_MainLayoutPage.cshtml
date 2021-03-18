@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/bootstrap-rtl.min.css" rel="stylesheet" />
+    <link href="~/Content/custom.min.css" rel="stylesheet" />
+    <link href="~/Content/StyleSheet1.css" rel="stylesheet" />
+</head>
+<body dir="rtl">
+    <div class="navbar navbar-expand-lg fixed-top">
+        <a class="navbar-brand" href="#">
+            <img src="~/Images/icon2.png" class="logo-size" />
+        </a>
+        <button class="navbar-toggler navbar-dark bg-dark" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarColor02">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="~/Home">الرئيسية <span class="sr-only">(current)</span></a>
+                </li>
+                @Html.Partial("_menuPartial")
+                <li class="nav-item">
+                    <a class="nav-link" href="~/Home/About">حول الموقع</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="~/Home/Contact">اتصل بنا</a>
+                </li>
+
+                <li>
+                    @using (Html.BeginForm("Search", "Home", FormMethod.Post))
+                    {
+                        <input type="search" id="gsearch" name="gsearch" placeholder="أبحث هنا..">
+                    }
+                </li>
+            </ul>
+            <!----------------------veiw partial login ---------------------------->
+            @Html.Partial("_LoginPartial")
+
+        </div>
+    </div>
+    <!----------------------footer ---------------------------->
+    <div class="container col-md-12">
+        <div class="row">
+            @RenderBody()
+        </div>
+    </div>
+    @Html.Partial("_footerPartial")
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="/Scripts/bootstrap.bundle.min.js"></script>
+    <script src="~/Scripts/custom.js"></script>
+    <script src="~/Scripts/jquery.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
+ 

@@ -1,0 +1,63 @@
+﻿@model Job_search.Models.Jobs
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_MainLayoutPage.cshtml";
+}
+<style>
+
+    .button {
+
+        margin-top: 20px;
+    }
+
+    p {
+        text-align: justify;
+        line-height: 1.8;
+    }
+
+    .thumbnail {
+        width: 170px;
+        height: 140px;
+    }
+
+    .card-header {
+        color: white;
+    }
+
+    .card-body {
+        background-color: #ececec;
+        border: 4px solid white;
+        border-radius: 15px;
+    }
+</style>
+
+<div class="container jumbotron">
+
+    <h4 class="card-header text-center bg-warning">تفاصيل الوظيفة</h4>
+    <hr />
+    <div class="card-body">
+
+        <p>
+            <strong>@Html.DisplayNameFor(model => model.Category.Categoryname):  </strong>
+            @Html.DisplayFor(model => model.Category.Categoryname)
+        </p>
+        <p>
+            <strong>@Html.DisplayNameFor(model => model.JobTitle):</strong>
+            @Html.DisplayFor(model => model.JobTitle)
+        </p>
+        <p>
+            <strong> @Html.DisplayNameFor(model => model.JobContent):</strong>
+            @Html.DisplayFor(model => model.JobContent)
+        </p>
+        <p>
+            <strong> @Html.DisplayNameFor(model => model.JobImage):</strong>
+            <br />
+            <img class="thumbnail" src="~/Uploads/@Html.DisplayFor(model => model.JobImage)" />
+        </p>
+    </div>
+    <p class="button offset-md-1">
+        @Html.ActionLink("العودة الى القائمة", "Index", null, new { @class = "btn btn-primary" })
+        @Html.ActionLink("تعديل", "Edit", new { id = Model.Id }, new { @class = "btn btn-success" })
+    </p>
+</div>

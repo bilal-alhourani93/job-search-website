@@ -1,0 +1,41 @@
+﻿@model Microsoft.AspNet.Identity.EntityFramework.IdentityRole
+
+
+<style>
+    .container{
+        width:400px;
+    }
+    .form-actions{
+        margin-top:20px;
+    }
+</style>
+<div class="container jumbotron ">
+
+    <div>
+        <h5>هل أنت متأكد من حذف نوع المستخدم ؟</h5>
+        <hr />
+        <div>
+            <table class="dl-horizontal">
+                <tr>
+                    <td>
+                        اسم المستخدم:
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.Name)
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+    <div class="form-actions no-color">
+        @Html.ActionLink("العودة الى القائمة", "Index", null, new { @class = "btn btn-primary" })
+        <input type="submit" value="حذف" class="btn btn-danger" /> 
+    </div>
+        }
+    </div>
+    </div>

@@ -1,0 +1,163 @@
+﻿@model IEnumerable<Job_search.Models.Category>
+@{
+    ViewBag.Title = "Home Page";
+}
+
+    <style>
+        body {
+            width: 100%;
+        }
+        .image1{
+            margin-top:-20px;
+        }
+        .alert {
+            width: 90%;
+            height: 1%;
+            margin-right:5%;
+            border-radius:15px;
+        }
+        .container-fluid {
+            border-radius:20px;
+           
+        }
+        .card-body {
+            padding-right:5%;
+        }
+        .category {
+            color: black;
+            margin-top: -10px;
+            text-align: center;
+            font-size: 17px;
+            border:2px;
+            border-radius: 19px;
+            padding:10px;
+        }
+
+        .description {
+           outline-width:initial;
+            color: black;
+            text-align: justify;
+            font-size:14px;
+            padding:7px;
+        }
+        .col-md-2 {
+            margin-left: 20px;
+            margin-bottom:2%;
+            background-color: #dedede;
+            min-width: 23%;
+            border-radius:15px;
+        }
+        .card-img {
+            width: 100%;
+            height: 55%;
+        }
+        .text1{
+            text-align:center;
+            padding-bottom:-10%;
+            
+        }
+        .button{
+           float:left;
+        }
+        h5.modal-title{
+            color:forestgreen;
+        }
+    </style>
+    <html>
+    <head>
+        
+    </head>
+    <body>
+
+        <div class="image1">
+            <img src="~/Images/kk (2).jpg" style=" width:100%; height:100%;" />
+        </div>
+
+        <div class="jumbotron alert">
+            <h4>مرحبا بك عزيزي الزائر</h4>
+            <p>
+                يمكنك نشر وظيفة إن كنت ناشرا ، ويمكنك التقدم للوظيفة كنت باحثا عن عمل.
+                من خلال موقع التوظيف، يمكن لأي شخص يبحث عن فرصة عمل في السوق
+            </p>
+            <p><a class="btn btn-primary"data-toggle="modal" id="myBtn" data-target="#myModal" style="float:left; color:white;">المزيد من التفاصيل &raquo;</a></p>
+
+            <!-- The Modal -->
+            <div class="modal" id="myModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h5 class="modal-title">مرحبا بك عزيزي الزائر</h5>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <p>
+                                يمكنك نشر وظيفة إن كنت ناشرا ، ويمكنك التقدم للوظيفة كنت باحثا عن عمل.
+                            </p>
+                            <p>
+                                من خلال موقع التوظيف، يمكن لأي شخص يبحث عن فرصة عمل في السوق:
+                            </p>
+                            <ol type="1">
+                                <li>
+                                    أدخال سيرته الذاتية
+                                </li>
+                                <li>
+                                    البحث عن العروض التي تطابق مع مؤهلاته
+                                </li>
+                                <li>
+                                    الوصول إلى أنواع مختلفة من الوظائف مثل العمل الحر، العمل بدوام جزئي، بدوام كامل، وغيرها.
+                                </li>
+                            </ol>
+                            <p>
+                                بالنسبة للشركات التي ترغب في إيجاد موظفين، يتيح لها موقع التوظيف:
+                            </p>
+                            <ol type="1">
+                                <li>
+                                    نشر احتياجات الوظائف بشكل دائم
+                                </li>
+                                <li>
+                                    يمكنك الوصول إلى آلاف السير الذاتية لعمليات البحث المستقبلية وتخزينها في قواعد البيانات.
+                                </li>
+                            </ol>
+                        </div>
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">اغلاق</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @foreach (var item in Model)
+        {
+            <div class=" col-md-11 container-fluid jumbotron">
+                <div class="category card-header">
+                  @Html.DisplayFor(modelItem => item.Categoryname)
+                </div>
+                <div class=" description card-footer alert-light">
+                @Html.DisplayFor(modelItem => item.CategoryDescription)
+                </div>
+
+                <div class="row card-body">
+                    @foreach (var Subitem in item.Jobss)
+                    {
+                        <div class="  col-md-2 bg-light">
+
+                            <img src="~/Uploads/@Subitem.JobImage" class="card-img img-thumbnail" />
+                            <h6 class="text1">@Html.DisplayFor(modelItem => Subitem.JobTitle)</h6>
+
+                            <div class="button">@Html.ActionLink("التفاصيل", "Details", new { jobId = Subitem.Id }, new { @class = "btn btn-primary" })
+                         </div>
+                        </div>
+                    }
+                </div>
+            </div>
+
+        } 
+
+ </body>
+</html>

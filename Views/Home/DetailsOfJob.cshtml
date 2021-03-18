@@ -1,0 +1,39 @@
+﻿@model Job_search.Models.ApplyForJob
+
+@{
+    ViewBag.Title = "DetailsOfJob";
+    Layout = "~/Views/Shared/_MainLayoutPage.cshtml";
+}
+<style>
+    div.container {
+        width: 600px;
+        height: 50%;
+        border-radius: 15px;
+    }
+</style>
+<div class="container jumbotron">
+
+    <h4 class="card-header text-center bg-warning">تفاصيل الطلب</h4>
+    <hr />
+    <ul class=" card-body jumbotron  ">
+        <li>
+            <strong>@Html.DisplayNameFor(model => model.jobs.JobTitle):</strong>
+            @Html.DisplayFor(model => model.jobs.JobTitle)
+        </li>
+
+        <li>
+            <strong>نص الرسالة :</strong>
+            @Html.DisplayFor(model => model.Massage)
+        </li>
+
+        <li>
+            <strong> التاريخ :</strong> @Html.DisplayFor(model => model.ApplyDate)
+        </li>
+
+    </ul>
+    <p>
+
+        @Html.ActionLink("العودة الى القائمة", "GetJobsByUser", null, new { @class = "btn btn-primary" })
+        @Html.ActionLink("تعديل", "EditOfJobs", new { id = Model.Id }, new { @class = "btn btn-success" })
+    </p>
+</div>

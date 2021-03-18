@@ -1,0 +1,106 @@
+﻿@model Job_search.Models.RegisterViewModel
+@{
+    ViewBag.Title = "تسجيل الاشتراك";
+    Layout = "";
+}
+
+<style>
+
+
+    body {
+        background-size: cover;
+        background-image: url('../../Images/sd.jpg');
+    }
+
+    .container {
+        background: rgb(0, 0, 0);
+        background: rgba(0, 0, 0, 0.2);
+        color: black;
+        border-radius: 10px;
+        min-height: 620px;
+        width: 300px;
+    }
+
+    div.container .fa {
+        font-size: 120px;
+        padding-right: 40%;
+    }
+
+    .col-md-offset-2 {
+    }
+
+    .btn-danger {
+        margin-right: 2%;
+        width: 40%;
+    }
+
+    .btn-success {
+        margin-right: 15%;
+        width: 40%;
+    }
+</style>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="~/Content/bootstrap-rtl.min.css" rel="stylesheet" />
+    <link href="~/Content/custom.min.css" rel="stylesheet" />
+    <link href="~/Content/StyleSheet1.css" rel="stylesheet" />
+
+</head>
+<body dir="rtl">
+
+    <div class="container col-md-5">
+        <br />
+        <h2>@ViewBag.Title.</h2>
+
+        @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+            <h4>إنشاء حساب جديد</h4>
+            <hr />
+            @Html.ValidationSummary("", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(m => m.UserName, new { @class = "col-md-5 control-label" })
+                <div class="col-md-12">
+                    @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.UserType, new { @class = "col-md-5 control-label" })
+                <div class="col-md-12">
+                    @Html.DropDownList("UserType", null, new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Email, new { @class = "col-md-5 control-label" })
+                <div class="col-md-12">
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Password, new { @class = "col-md-5 control-label" })
+                <div class="col-md-12">
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-5 control-label" })
+                <div class="col-md-12">
+                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class=" col-md-12 col-md-offset-2 ">
+                    <a href="~/Home/Index" class="btn btn-danger ">إلغاء</a>
+                    <input type="submit" class="btn btn-success" value="تسجيل" />
+                </div>
+
+            </div>
+        }
+
+    </div>
+</body>
+</html>

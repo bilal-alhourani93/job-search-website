@@ -1,0 +1,33 @@
+﻿@model Microsoft.AspNet.Identity.EntityFramework.IdentityRole
+
+<style>
+    .container{
+        width:400px;
+    }
+    p{
+        margin-top:20px;
+    }
+</style>
+
+<div class="container jumbotron" >
+
+    <div>
+        <h4>التفاصيل</h4>
+        <hr />
+        <table class="dl-horizontal">
+            <tr>
+                <td>
+                    اسم المستخدم:
+                </td>
+
+                <td>
+                    @Html.DisplayFor(model => model.Name)
+                </td>
+            </tr>
+        </table>
+    </div>
+    <p>
+        @Html.ActionLink("العودة الى القائمة", "Index", null, new { @class = "btn btn-primary" })
+        @Html.ActionLink("تعديل", "Edit", new { id = Model.Id }, new { @class = "btn btn-success" })
+    </p>
+    </div>

@@ -1,0 +1,104 @@
+﻿@using Job_search.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "Log in";
+    Layout = "";
+}
+<style>
+
+
+    body {
+        background-size: cover;
+        background-image: url('../../Images/sd.jpg');
+    }
+
+    .container {
+        background: rgba(0, 0, 0, 0.2);
+        color: black;
+        border-radius: 10px;
+    }
+
+    div.container .fa {
+        font-size: 120px;
+        padding-right: 39%;
+    }
+</style>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="~/Content/bootstrap-rtl.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="~/Content/custom.min.css" rel="stylesheet" />
+    <link href="~/Content/StyleSheet1.css" rel="stylesheet" />
+
+
+</head>
+<body dir="rtl">
+
+    <div class="container col-md-4 ">
+        <br />
+        <i class="fa fa-user-circle"></i>
+        <br />
+        <br />
+        <div class="row">
+            <div class="col-md-12">
+                <section id="loginForm">
+                    @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+
+                            @Html.LabelFor(m => m.UserName, new { @class = "col-md-5 control-label" })
+
+                            <div class="col-md-12">
+                                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+
+                            @Html.LabelFor(m => m.Password, new { @class = "col-md-5 control-label" })
+                            <div class="col-md-12">
+                                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-12">
+                                <div class="checkbox" style="padding-right:10%;">
+                                    @Html.CheckBoxFor(m => m.RememberMe)
+                                    @Html.LabelFor(m => m.RememberMe)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-12" style="padding-right:70%;">
+                                <input type="submit" value=" دخول" class="btn btn-success" />
+                            </div>
+                        </div>
+                        <p>
+                            @Html.ActionLink("سجل كمستخدم جديد", "Register")
+                        </p>
+                        @* Enable this once you have account confirmation enabled for password reset functionality
+                            <p>
+                                @Html.ActionLink("Forgot your password?", "ForgotPassword")
+                            </p>*@
+                    }
+                </section>
+            </div>
+            @*
+                <div class="col-md-4">`
+                    <section id="socialLoginForm">
+                        @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+                    </section>
+                </div>*@
+        </div>
+    </div>
+
+</body>
+
+</html>

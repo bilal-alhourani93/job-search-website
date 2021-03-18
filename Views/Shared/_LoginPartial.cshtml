@@ -1,0 +1,74 @@
+﻿@using Microsoft.AspNet.Identity
+@using Job_search.Models;
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        var db = new ApplicationDbContext();
+        var userId = User.Identity.GetUserId();
+        var currentUser = db.Users.Where(a => a.Id == userId).SingleOrDefault();
+
+        @Html.AntiForgeryToken()
+
+         <style>
+             .dropdown-item:hover {
+                 background-color: blue;
+                 color: white;
+             }
+ 
+         </style>
+        <ul Class="navbar-nav mr-auto " style="padding-left:100px">
+            <li class="nav-item dropdown ">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <strong>مرحبا بك يا :@currentUser.UserName</strong>
+
+                </a>
+                <div class="dropdown-menu text-center list-group-item-secondary" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item  " href="#">
+                        <strong>
+                            @currentUser.Email
+                        </strong>
+                    </a>
+                    @if (currentUser.UserType == "Admins")
+                    {
+                        <a class="dropdown-item" href="~/Roles/Index"> انواع المستخدمين </a>
+                        <a class="dropdown-item" href="~/Categories/Index">انواع الوظائف</a>
+                    }
+                    else if (currentUser.UserType == "ناشر")
+                    {
+                        <a class="dropdown-item" href="~/Home/GetJobsByPublisher"> طلبات الوظائف </a>
+                        <a class="dropdown-item" href="~/Jobs/Create">نشر وظيفة جديدة</a>
+                    }
+                    else if (currentUser.UserType == "باحث")
+                    {
+                        <a class="dropdown-item" href="~/Home/GetJobsByUser">الوظائف التي تم التقدم اليها </a>
+                    }
+                    <a class="dropdown-item btn-primary btn-block" href="~/Account/EditProfile">
+                        <snap Class="glyphicon glyphicon-cog"></snap>
+                        تعديل الحساب
+                    </a>
+                    <div class="dropdown-divider"></div>
+
+                    <a href="javascript:document.getElementById('logoutForm').submit()" class="btn btn-danger btn-block">
+                        تسجيل الخروج
+                    </a>
+
+                </div>
+            </li>
+         </ul>
+    }
+ }
+else
+  {
+      <div>
+         <ul Class="navbar-nav mr-auto">
+           <li class="nav-item">
+                <a class="nav-link" href="~/Account/Register" > اشتراك</a>
+           </li>
+           <li class="nav-item">
+                 <a class="nav-link" href="~/Account/Login" >تسجيل الدخول</a>
+            </li>
+         </ul>
+     </div>
+
+  }

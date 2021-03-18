@@ -1,0 +1,57 @@
+﻿
+@using Microsoft.AspNet.Identity
+@using Job_search.Models;
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        var db = new ApplicationDbContext();
+        var userId = User.Identity.GetUserId();
+        var currentUser = db.Users.Where(a => a.Id == userId).SingleOrDefault();
+
+        @Html.AntiForgeryToken()
+
+        <style>
+            li > a:hover {
+                color: black;
+                background-color: #00c4ff;
+                font-family: m1;
+            }
+
+            li > a {
+                color: white;
+            }
+        </style>
+
+        if (currentUser.UserType == "Admins")
+        {
+            <li class="nav-item">
+                <a class="nav-link" href="~/Roles/Index">انواع المستخدمين</a>
+
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="~/Categories/Index">انواع الوظائف</a>
+            </li>
+        }
+        else if (currentUser.UserType == "ناشر")
+        {
+            <li class="nav-item">
+                <a class="nav-link" href="~/Jobs/Index">الوظائف</a>
+            </li>
+        }
+        else if (currentUser.UserType == "باحث")
+        {
+            <li class="nav-item">
+                <a class="nav-link" href="~/Home/GetJobsByUser">طلباتي</a>
+            </li>
+        }
+
+
+
+    }
+}
+else
+{
+
+
+}

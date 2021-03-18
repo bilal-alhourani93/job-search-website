@@ -1,0 +1,48 @@
+﻿@model Job_search.Models.Category
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_MainLayoutPage.cshtml";
+}
+
+<style>
+    .container {
+        width: 500px;
+    }
+
+    p {
+        margin-top: 30px;
+    }
+</style>
+
+<div class="container jumbotron">
+    <h4 class="card-header alert-warning" >التفاصيل</h4>
+    <hr />
+    <table class="dl-horizontal">
+        <tr>
+
+
+           <td>
+               <strong> @Html.DisplayNameFor(model => model.Categoryname) :</strong>
+           </td>
+
+            <td>
+                @Html.DisplayFor(model => model.Categoryname)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <strong>  @Html.DisplayNameFor(model => model.CategoryDescription):</strong>
+            </td>
+
+            <td>
+                @Html.DisplayFor(model => model.CategoryDescription)
+            </td>
+        </tr>
+    </table>
+
+    <p>
+        @Html.ActionLink("العودة الى القائمة", "Index", null, new { @class = "btn btn-primary" })
+        @Html.ActionLink("تعديل", "Edit", new { id = Model.Id }, new { @class = "btn btn-success" })
+    </p>
+</div>

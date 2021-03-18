@@ -1,0 +1,73 @@
+﻿@font-face{
+    font-family:myfont;
+    src:url('font/GE_SS_Two_Bold.woff')
+
+}
+@font-face {
+    font-family: myfont2;
+    src: url('font/DroidKufi-Regular.ttf')
+}
+
+@font-face {
+    font-family: m1;
+    src: url('font/DroidNaskh-Regular.ttf') format('truetype');
+    }
+    body{
+
+    font-family:m1;
+    background-color:white; 
+}
+
+.navbar{
+    background-color:black;
+}
+    .navbar-expand-lg .navbar-nav > li > a{
+        color: #fff;
+        font-family: m1;
+   
+    }
+        .navbar-expand-lg .navbar-nav > li > a:hover {
+            color: black;
+            background-color:#00c4ff;
+            font-family: m1;
+        }
+
+.myfooter {
+    background-color:#e6e6e6;
+    padding-top: 10px;
+    font-family: m1;
+    
+}
+
+
+.logo-size{
+    width:35px;
+    height:35px;
+
+}
+#gsearch {
+    width: 130px;
+    border: 2px solid #ccc;
+    border-radius: 20px;
+    background-color: white;
+    color: black;
+    margin-top:5px;
+    margin-right: 10px;
+    background-image: url('../Images/Search.png');
+    background-position:left;
+    background-repeat:no-repeat;
+    background-size:20px;
+    font-family:m1;
+    padding:2px;
+    transition:width 0.4s ease-in-out;
+}
+#gsearch:focus{
+    width:100%;
+}
+
+@media(min-width:992px){
+    .gd{
+        min-width:23%;
+    }
+}
+

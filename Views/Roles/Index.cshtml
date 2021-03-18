@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Microsoft.AspNet.Identity.EntityFramework.IdentityRole>
+
+<style>
+
+    .bg-info {
+        border: 2px solid #00ffff;
+    }
+
+    h3 {
+        padding-top: 10px;
+    }
+
+    .button1 {
+        float: left;
+        margin-left: 10%;
+        padding:3px;
+    }
+
+    th {
+        width: 5%;
+    }
+
+    .alert:hover {
+        background-color: #fbfaca;
+    }
+</style>
+<div class="container jumbotron">
+    <table class="bg-info col-md-12 text-center">
+        <tr>
+            <td>
+                <strong>انواع المستخدمين</strong>  
+            </td>
+            <td class="button1">
+                @Html.ActionLink("إضافة نوع مستخدم ", "Create", null, new { @class = " btn btn-outline-dark" })
+            </td>
+        </tr>
+    </table>
+    <table class="table table-bordered text-sm-center ">
+        <tr  >
+            <th class="text-center">
+                نوع المستخدم
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr class="alert table-hover ">
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td class="text-center">
+                    @Html.ActionLink("تعديل", "Edit", new { id = item.Id }, new { @class = " btn btn-success btn-sm" })
+                    @Html.ActionLink("التفاصيل", "Details", new { id = item.Id }, new { @class = " btn btn-warning btn-sm" })
+                    @Html.ActionLink("حذف", "Delete", new { id = item.Id }, new { @class = " btn btn-danger btn-sm" })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

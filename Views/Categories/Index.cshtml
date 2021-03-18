@@ -1,0 +1,56 @@
+﻿@model IEnumerable<Job_search.Models.Category>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayoutPage.cshtml";
+}
+
+
+<style>
+    table{
+        margin-right:8%;
+    }
+    h4{
+        padding:4px;
+        margin-top:2px;
+    }
+</style>
+<table class="bg-info col-md-8 text-center">
+    <tr>
+        <td>
+            <h4>قائمة انواع الوظائف</h4>
+        </td>
+        <td>
+            @Html.ActionLink("إضافة نوع جديد ", "Create", null, new { @class = " btn btn-outline-dark" })
+        </td>
+    </tr>
+</table>
+
+<table class="table col-md-8 table-bordered table-hover table-warning">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Categoryname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CategoryDescription)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Categoryname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CategoryDescription)
+            </td>
+            <td>
+                @Html.ActionLink("تعديل", "Edit", new { id = item.Id }, new { @class = " btn btn-success btn-sm" })
+                @Html.ActionLink("التفاصيل", "Details", new { id = item.Id }, new { @class = " btn btn-warning btn-sm" })
+                @Html.ActionLink("حذف", "Delete", new { id = item.Id }, new { @class = " btn btn-danger btn-sm" })
+            </td>
+        </tr>
+    }
+</table>
